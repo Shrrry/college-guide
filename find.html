@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 60px;
+            background-color: #f9f9fb;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #007BFF;
+        }
+
+        .content {
+            margin: 20px;
+        }
+
+        .block {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .block:hover {
+            transform: translateY(-5px);
+        }
+
+        .block h3 {
+            font-size: 1.8em;
+            color: #007BFF;
+            margin-bottom: 15px;
+        }
+
+        .block p {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .back-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+
+        /* Search Bar Styling */
+        .search-container {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+
+        .search-bar {
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 250px;
+            box-sizing: border-box;
+        }
+
+        /* Map Button */
+        .map-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .map-button:hover {
+            background-color: #218838;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Hidden class for search results */
+        .hidden {
+            display: none;
+        }
+
+        /* No results message */
+        .no-results {
+            font-size: 1.5em;
+            color: #ff0000;
+            margin-top: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .search-bar {
+                width: 200px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .block h3 {
+                font-size: 1.6em;
+            }
+
+            .map-button {
+                font-size: 1.1em;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-bar" placeholder="Search...">
+    </div>
+
+    <h1>Find Information on Campus</h1>
+
+    <!-- B.Tech Building Section -->
+    <div class="block" id="btech-block">
+        <h3>B.Tech Building</h3>
+        <p>Admission office: Ground floor</p>
+        <p>Exam Office: First floor</p>
+        <p>ERP Cell: Ground floor</p>
+    </div>
+
+    <!-- CSIT Building Section -->
+    <div class="block" id="csit-block">
+        <h3>CSIT Building</h3>
+        <p>Enquiry Office : Basement</p>
+        <p>LT1 ,  LT2 : Ground Floor</p>
+        <p>LT3 ,  LT4 , LT5 : First Floor</p>
+        <p>LT6 ,  LT7 , LT8: Second Floor</p>
+        <p>LT9 ,  LT10 ,LT11: Third Floor</p>
+    </div>
+
+    <!-- No Results Message -->
+    <div id="noResultsMessage" class="no-results hidden">No results found</div>
+
+    <div class="content">
+        <a href="index.html" class="back-link">Back to Home</a>
+    </div>
+
+    <!-- Map Link Button -->
+    <div class="content">
+        <a href="https://www.google.com/maps/d/u/0/edit?mid=1RbF7c5KrSKbyZ4zHAankFEr0xLQFc4w&usp=sharing" class="map-button" target="_blank" aria-label="View Campus on Map">View Campus on Map</a>
+    </div>
+
+    <script>
+        // JavaScript for searching
+        const searchInput = document.getElementById('searchInput');
+        const blocks = document.querySelectorAll('.block');
+        const noResultsMessage = document.getElementById('noResultsMessage');
+
+        searchInput.addEventListener('input', function() {
+            const query = searchInput.value.toLowerCase();
+            let hasResults = false;
+
+            blocks.forEach(block => {
+                const textContent = block.textContent.toLowerCase();
+                if (textContent.includes(query)) {
+                    block.classList.remove('hidden');
+                    hasResults = true;
+                } else {
+                    block.classList.add('hidden');
+                }
+            });
+
+            // If no results are found, show the "No results found" message
+            if (hasResults) {
+                noResultsMessage.classList.add('hidden');
+            } else {
+                noResultsMessage.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

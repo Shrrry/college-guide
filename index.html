@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Tour</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f9f9fb;
+            color: #141010;
+        }
+
+        /* Header Bar */
+        .header-bar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #007BFF;
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .header-bar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 8px 15px;
+            transition: all 0.3s ease;
+        }
+
+        .header-bar a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 60px;
+            height: 70vh;
+            background: url('try1.png') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero h1 {
+            font-size: 50px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        /* Additional Image Section */
+        .additional-image {
+            margin: 30px auto;
+            text-align: center;
+        }
+
+        .additional-image img {
+            width: 15%;
+        }
+
+        /* Video Section */
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        video {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        /* Features Section */
+        .features {
+            background-color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .features h2 {
+            margin-bottom: 20px;
+        }
+
+        .feature-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .feature {
+            width: 250px;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .feature img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .feature:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* About Section */
+        .about {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .about img {
+            width: 200px;
+            border-radius: 8px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header-bar">
+        <a href="camera.html">Camera</a>
+        <a href="#video">Video Tour</a>
+        <a href="find.html">Find</a>
+        <a href="https://www.google.com/maps/d/u/0/edit?mid=1RbF7c5KrSKbyZ4zHAankFEr0xLQFc4w&usp=sharing">View Campus on Map</a>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div>
+            <h1>Welcome to Our College</h1>
+            <p>Explore our campus and experience the future of education</p>
+        </div>
+    </div>
+
+    <!-- Additional Image Section -->
+    <div class="additional-image">
+        <img src="Group.png" alt="Graphic Era">
+    </div>
+
+    <!-- Video Section -->
+    <div id="video" class="video-container">
+        <video src="video.mp4" controls autoplay></video>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features">
+        <h2>Key Features</h2>
+        <div class="feature-list">
+            <a href="https://my.matterport.com/show/?m=jht2rrDx41j" target="_blank" class="feature">
+                <img src="download.jpeg" alt="Library">
+                <h3>World-Class Library</h3>
+                <p>Access a wealth of knowledge with thousands of books and online resources.</p>
+            </a>
+            <a href="https://my.matterport.com/show/?m=nXg2NkwNy7z" target="_blank" class="feature">
+                <img src="lab.jpeg" alt="Lab">
+                <h3>State-of-the-Art Labs</h3>
+                <p>Innovative labs equipped with the latest technology to enhance your learning.</p>
+            </a>
+            <a href="https://my.matterport.com/show/?m=5PbARBCT1Fi" target="_blank" class="feature">
+                <img src="badminton.jpeg" alt="Sports">
+                <h3>badminton</h3>
+                <p>Engage in sports and fitness activities with top-notch facilities.</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="about">
+        <img src="ghansala.jpeg" alt="Director Photo">
+        <h4>Director Sir</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <h5>About Us</h5>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 Graphic Era Deemed. All rights reserved.</p>
+        <p><a href="">Follow us on Social Media</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera & Upload</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f9f9fb;
+            color: #333;
+            text-align: center;
+        }
+        .camera-container, .upload-container {
+            margin-top: 20px;
+        }
+        video, img {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        button, input[type="file"] {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .check-button {
+            margin-top: 30px;
+            padding: 12px 25px;
+            background-color: #28a745;
+            font-size: 18px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .check-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>Take or Upload a Photo</h1>
+    
+    <div class="camera-container">
+        <video id="video" width="640" height="480" autoplay></video>
+        <br />
+        <button id="capture">Capture Photo</button>
+        <canvas id="canvas" style="display:none;"></canvas>
+        <br />
+        <img id="photo" alt="Captured Photo" style="margin-top: 20px;"/>
+    </div>
+    
+    <div class="upload-container">
+        <input type="file" id="upload" accept="image/*">
+        <br />
+        <img id="uploadedPhoto" alt="Uploaded Photo" style="margin-top: 20px;"/>
+    </div>
+    
+    <button id="sendToApi">Send to API</button>
+    <p id="apiResponse"></p>
+    
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+        const captureButton = document.getElementById('capture');
+        const photo = document.getElementById('photo');
+        const uploadInput = document.getElementById('upload');
+        const uploadedPhoto = document.getElementById('uploadedPhoto');
+        const sendToApiButton = document.getElementById('sendToApi');
+        const apiResponse = document.getElementById('apiResponse');
+        let imageDataUrl = "";
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => { video.srcObject = stream; })
+            .catch(err => { console.log("Error: " + err); });
+
+        captureButton.addEventListener('click', () => {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            imageDataUrl = canvas.toDataURL('image/png');
+            photo.src = imageDataUrl;
+        });
+
+        uploadInput.addEventListener('change', event => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imageDataUrl = e.target.result;
+                    uploadedPhoto.src = imageDataUrl;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        sendToApiButton.addEventListener('click', () => {
+            if (!imageDataUrl) {
+                alert("Please capture or upload an image first.");
+                return;
+            }
+
+            fetch('http://127.0.0.1:5000/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image: imageDataUrl })
+            })
+            .then(response => response.json())
+            .then(data => {
+                apiResponse.innerText = "API Response: " + data.result;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                apiResponse.innerText = "Error: " + error.message;
+            });
+        });
+    </script>
+</body>
+</html>

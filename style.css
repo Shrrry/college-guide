@@ -1,0 +1,16 @@
+body
+{
+    background-color: lemonchiffon;
+    .full-screen-img {
+        width: 100vw; /* Full viewport width */
+        height: 100vh; /* Full viewport height */
+        object-fit: cover; /* Ensures the image scales properly without distortion */
+    }
+    .top-centered-img {
+        display: block;
+        margin: 0 auto; /* Centers the image horizontally */
+        margin-top: 20px; /* Adjusts the spacing from the top of the page */
+        width: 50%; /* Optional: Adjust the image size */
+    }
+    
+}
